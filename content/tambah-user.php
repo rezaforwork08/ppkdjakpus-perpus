@@ -23,7 +23,7 @@ if (isset($_POST['simpan'])) {
         WHERE id = '$id'
         ");
     }
-    header("location:?pg=user&tambah=berhasil");
+    // header("location:?pg=user&tambah=berhasil");
 }
 
 if (isset($_GET['delete'])) {

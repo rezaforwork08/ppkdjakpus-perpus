@@ -1,5 +1,5 @@
 <?php
-$queryUser = mysqli_query($koneksi, "SELECT level.nama_level, user.* FROM user LEFT JOIN level ON level.id = user.id_level ORDER BY id DESC");
+$queryUser = mysqli_query($koneksi, "SELECT * FROM anggota ORDER BY id DESC");
 // $rowUser = mysqli_fetch_assoc($queryUser);
 // die;
 ?>
@@ -7,10 +7,10 @@ $queryUser = mysqli_query($koneksi, "SELECT level.nama_level, user.* FROM user L
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
-                <div class="card-header">Data User</div>
+                <div class="card-header">Data Anggota</div>
                 <div class="card-body">
                     <div align="right" class="mb-3">
-                        <a href="?pg=tambah-user" class="btn btn-primary">Tambah</a>
+                        <a href="?pg=tambah-anggota" class="btn btn-primary">Tambah</a>
                     </div>
                     <?php if (isset($_GET['tambah'])) : ?>
                         <div class="alert alert-success">
@@ -26,9 +26,10 @@ $queryUser = mysqli_query($koneksi, "SELECT level.nama_level, user.* FROM user L
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Level</th>
+                                <th>NISN</th>
                                 <th>Nama</th>
-                                <th>Email</th>
+                                <th>No Telp</th>
+                                <th>Jenis</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -39,13 +40,14 @@ $queryUser = mysqli_query($koneksi, "SELECT level.nama_level, user.* FROM user L
                             while ($rowUser = mysqli_fetch_assoc($queryUser)) : ?>
                                 <tr>
                                     <td><?php echo $no++ ?></td>
-                                    <td><?php echo $rowUser['nama_level'] ?></td>
+                                    <td><?php echo $rowUser['nisn'] ?></td>
                                     <td><?php echo $rowUser['nama_lengkap'] ?></td>
-                                    <td><?php echo $rowUser['email'] ?></td>
+                                    <td><?php echo $rowUser['no_telp'] ?></td>
+                                    <td><?php echo $rowUser['jenis_kelamin'] ?></td>
                                     <td>
-                                        <a href="?pg=tambah-user&edit=<?php echo $rowUser['id'] ?>" class="btn btn-sm btn-success">Edit</a> |
+                                        <a href="?pg=tambah-anggota&edit=<?php echo $rowUser['id'] ?>" class="btn btn-sm btn-success">Edit</a> |
 
-                                        <a onclick="return confirm('Apakah anda yakin akan menghapus data ini??')" href="?pg=tambah-user&delete=<?php echo $rowUser['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
+                                        <a onclick="return confirm('Apakah anda yakin akan menghapus data ini??')" href="?pg=tambah-anggota&delete=<?php echo $rowUser['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
                                     </td>
                                 </tr>
                             <?php endwhile ?>

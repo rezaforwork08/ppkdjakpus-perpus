@@ -35,32 +35,31 @@ include 'config/koneksi.php';
                             <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="?pg=user">User</a>
+                            <a class="nav-link" href="?pg=peminjaman">Peminjaman</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="?pg=anggota">Anggota</a>
+                            <a class="nav-link" href="?pg=anggota">Pengembalian</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown
+                                Master Data
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Buku</a></li>
+                                <li><a class="dropdown-item" href="#">Kategori</a></li>
+                                <li><a class="dropdown-item" href="#">Anggota</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li><a class="dropdown-item" href="#">Level</a></li>
+                                <li><a class="dropdown-item" href="#">User</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                            <a href="#" class="nav-link" aria-disabled="true">Keluar</a>
                         </li>
                     </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
+
                 </div>
             </div>
         </nav>
@@ -81,6 +80,37 @@ include 'config/koneksi.php';
         ?>
         <!-- end content -->
     </div>
+
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+
+    <script>
+        // let kategori = document.getElementById('id_kategori');
+        // kategori.addEventListener('change', function() {
+        //     let id = this.value;
+        //     alert(id);
+        // });
+
+        $('#id_kategori').change(function() {
+            let id = $(this).val(),
+                option = "";
+            $.ajax({
+                url: "ajax/get-buku.php?id_kategori=" + id,
+                type: "GET",
+                dataType: "json",
+                success: function(data) {
+                    option += "<option>Pilih Buku</option>"
+                    $.each(data, function(key, value) {
+                        option += "<option value=" + value.id + ">" + value.judul + "</option>"
+                        // console.log("valuenya : ", value.judul);
+                    });
+                    $('#id_buku').html(option);
+                }
+            })
+        });
+    </script>
+
 </body>
 
 </html>

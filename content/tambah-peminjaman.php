@@ -6,26 +6,28 @@ if (isset($_GET['edit'])) {
     $rowEdit = mysqli_fetch_assoc($edit);
 }
 if (isset($_POST['simpan'])) {
+
     // jika param edit ada maka updet, selain itu maka tambah
     $id = isset($_GET['edit']) ? $_GET['edit'] : '';
 
-    $nama_lengkap = $_POST['nama_lengkap'];
-    $email        = $_POST['email'];
-    $password     = sha1($_POST['password']);
-    $id_level     = $_POST['id_level'];
+    $kode_transaksi = $_POST['kode_transaksi'];
+    $id_anggota        = $_POST['id_anggota'];
+    $id_user        = $_POST['id_user'];
+    $tgl_pinjam     = $_POST['tgl_pinjam'];
+    $tgl_kembali     = $_POST['tgl_kembali'];
 
-    if (!$id) {
-        $insert = mysqli_query($koneksi, "INSERT INTO user (nama_lengkap, email, password, id_level) VALUES ('$nama_lengkap','$email','$password','$id_level')");
-        header("location:?pg=user&tambah=berhasil");
-    } else {
-        $update = mysqli_query($koneksi, "UPDATE user SET 
-        nama_lengkap='$nama_lengkap',
-        email = '$email',
-        id_level = '$id_level',
-        password = '$password'
-        WHERE id = '$id'
-        ");
-        header("location:?pg=user&ubah=berhasil");
+    $id_kategori = $_POST['id_kategori'];
+    $insert = mysqli_query($koneksi, "INSERT INTO peminjaman (kode_transaksi, id_anggota, id_user, tgl_pinjam, tgl_kembali, status) 
+    VALUES ('$kode_transaksi','$id_anggota','$id_user','$tgl_pinjam','$tgl_kembali','1')");
+    if ($insert) {
+        $id_peminjam = mysqli_insert_id($koneksi);
+        foreach ($id_kategori as $key => $value) {
+            $id_kategori = $_POST['id_kategori'][$key];
+            $id_buku = $_POST['id_buku'][$key];
+            $insert = mysqli_query($koneksi, "INSERT INTO detail_peminjaman (id_peminjaman,id_buku, id_kategori) 
+    VALUES ('$id_peminjam','$id_kategori','$id_buku')");
+            header("location:?pg=peminjaman&tambah=berhasil");
+        }
     }
 }
 
@@ -130,6 +132,7 @@ $queryBuku  = mysqli_query($koneksi, "SELECT * FROM buku ORDER BY id DESC");
                                 </select>
                             </div>
                         </div>
+                        <input type="hidden" id="tahun_terbit">
                         <div class="mt-5 mb-5">
                             <div align="right" class="mb-3">
                                 <button type="button" id="tambah-row" class="btn btn-primary tambah-row">

@@ -100,8 +100,9 @@ include 'config/koneksi.php';
                 type: "GET",
                 dataType: "json",
                 success: function(data) {
-                    option += "<option>Pilih Buku</option>"
+                    option += "<option value=''>Pilih Buku</option>"
                     $.each(data, function(key, value) {
+                        let tahun_terbit = $('#tahun_terbit').val(value.tahun_terbit);
                         option += "<option value=" + value.id + ">" + value.judul + "</option>"
                         // console.log("valuenya : ", value.judul);
                     });
@@ -111,13 +112,29 @@ include 'config/koneksi.php';
         });
 
         $('#tambah-row').click(function() {
+            if ($('#id_kategori').val() == "") {
+                alert('Mohon pilih Kategori Buku terlebih dahulu');
+                return false;
+            }
+
+            if ($('#id_buku').val() == "") {
+                alert('Mohon pilih Buku terlebih dahulu');
+                return false;
+            }
+            let nama_kategori = $('#id_kategori').find('option:selected').text(),
+                nama_buku = $('#id_buku').find('option:selected').text(),
+                tahun_terbit = $('#tahun_terbit').val(),
+                id_kategori = $('#id_kategori').val(),
+                id_buku = $('#id_buku').val();
+
             let tbody = $('tbody');
+            let no = tbody.find('tr').length + 1;
             let table = "<tr>";
-            table += "<td></td>";
-            table += "<td></td>";
-            table += "<td></td>";
-            table += "<td></td>";
-            table += "<td><button type='button'  class='remove btn btn-sm btn-success'>Delete</button></td>";
+            table += "<td>" + no + "</td>";
+            table += "<td>" + nama_kategori + " <input type='hidden' name='id_kategori[]' value='" + id_kategori + "'></td>";
+            table += "<td>" + nama_buku + " <input type='hidden' name='id_buku[]' value='" + id_buku + "'></td>";
+            table += "<td>" + tahun_terbit + "</td>";
+            table += "<td><button type='button' id='remove'  class='remove btn btn-sm btn-success'>Delete</button></td>";
             table += "</tr>";
             tbody.append(table);
 

@@ -130,6 +130,34 @@ $queryBuku  = mysqli_query($koneksi, "SELECT * FROM buku ORDER BY id DESC");
                                 </select>
                             </div>
                         </div>
+                        <div class="mt-5 mb-5">
+                            <div align="right" class="mb-3">
+                                <button type="button" id="tambah-row" class="btn btn-primary tambah-row">
+                                    Tambah
+                                </button>
+                            </div>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Kategori Buku</th>
+                                        <th>Judul Buku</th>
+                                        <th>Tahun Terbit</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr> -->
+
+                                </tbody>
+                            </table>
+                        </div>
                         <div class="mb-3">
                             <input type="submit" class="btn btn-primary" name="simpan" value="Simpan">
                         </div>

@@ -109,6 +109,22 @@ include 'config/koneksi.php';
                 }
             })
         });
+
+        $('#tambah-row').click(function() {
+            let tbody = $('tbody');
+            let table = "<tr>";
+            table += "<td></td>";
+            table += "<td></td>";
+            table += "<td></td>";
+            table += "<td></td>";
+            table += "<td><button type='button'  class='remove btn btn-sm btn-success'>Delete</button></td>";
+            table += "</tr>";
+            tbody.append(table);
+
+            $('.remove').click(function() {
+                $(this).closest('tr').remove();
+            });
+        });
     </script>
 
 </body>

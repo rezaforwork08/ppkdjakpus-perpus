@@ -144,6 +144,21 @@ include 'function/helper.php';
                 $(this).closest('tr').remove();
             });
         });
+
+        $('#kode_peminjaman').change(function() {
+            let id = $(this).val();
+            $.ajax({
+                url: "ajax/get-data-transaksi.php?kode_transaksi=" + id,
+                type: "GET",
+                dataType: "json",
+                success: function(data) {
+                    $('#nama_anggota').val(data.data.nama_lengkap)
+                    $('#tgl_pinjam').val(data.data.tgl_pinjam)
+                    $('#tgl_kembali').val(data.data.tgl_kembali)
+
+                }
+            })
+        });
     </script>
 
 </body>

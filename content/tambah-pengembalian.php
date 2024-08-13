@@ -201,12 +201,43 @@ $queryPeminjaman  = mysqli_query($koneksi, "SELECT * FROM peminjaman WHERE statu
                                     <label for="">Kode Peminjaman</label>
                                 </div>
                                 <div class="col-sm-3">
-                                    <select name="id_peminjaman" id="" class="form-control">
+                                    <select name="id_peminjaman" id="kode_peminjaman" class="form-control">
                                         <option value="">Pilih Kode Peminjaman</option>
                                         <?php while ($rowPeminjaman = mysqli_fetch_assoc($queryPeminjaman)): ?>
                                             <option value="<?php echo $rowPeminjaman['id'] ?>"><?php echo $rowPeminjaman['kode_transaksi'] ?></option>
                                         <?php endwhile ?>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-6">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <label for="">Nama Anggota</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input placeholder="Nama Anggota" type="text" readonly id="nama_anggota" value="" class="form-control">
+
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <label for="">Tanggal Pinjam</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input placeholder="Tanggal Pinjam" type="text" readonly id="tgl_pinjam" value="" class="form-control">
+
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <label for="">Tanggal Kembali</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input placeholder="Tanggal Kembali" type="text" readonly id="tgl_kembali" value="" class="form-control">
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 

@@ -70,7 +70,7 @@ $kode_transaksi = "PJ" . date("dmY") . sprintf("%03s", $no_urut);
 
 $queryAnggota = mysqli_query($koneksi, "SELECT * FROM anggota ORDER BY id DESC");
 $queryKategori = mysqli_query($koneksi, "SELECT * FROM kategori ORDER BY id DESC");
-$queryBuku  = mysqli_query($koneksi, "SELECT * FROM buku ORDER BY id DESC");
+$queryPeminjaman  = mysqli_query($koneksi, "SELECT * FROM peminjaman WHERE status = 1 ORDER BY id DESC");
 
 
 
@@ -175,38 +175,9 @@ $queryBuku  = mysqli_query($koneksi, "SELECT * FROM buku ORDER BY id DESC");
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header">Transaksi Peminjaman</div>
+                    <div class="card-header">Transaksi Pengembalian</div>
                     <div class="card-body">
                         <form action="" method="post">
-                            <div class="row mb-3">
-                                <div class="col-sm-2">
-                                    <label for="">Kode Transaksi</label>
-                                </div>
-                                <div class="col-sm-3">
-                                    <input type="text" class="form-control" name="kode_transaksi" value="<?php echo ($kode_transaksi ?? '') ?>" readonly>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-sm-2">
-                                    <label for="">Nama Anggota</label>
-                                </div>
-                                <div class="col-sm-3">
-                                    <select name="id_anggota" id="" class="form-control">
-                                        <option value="">Pilih Anggota</option>
-                                        <?php while ($rowAnggota = mysqli_fetch_assoc($queryAnggota)) : ?>
-                                            <option value="<?php echo $rowAnggota['id'] ?>"><?php echo $rowAnggota['nama_lengkap'] ?></option>
-                                        <?php endwhile ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-sm-2">
-                                    <label for="">Tanggal Pinjam</label>
-                                </div>
-                                <div class="col-sm-3">
-                                    <input type="date" class="form-control" name="tgl_pinjam" value="">
-                                </div>
-                            </div>
                             <div class="row mb-3">
                                 <div class="col-sm-2">
                                     <label for="">Tanggal Kembali</label>
@@ -225,38 +196,22 @@ $queryBuku  = mysqli_query($koneksi, "SELECT * FROM buku ORDER BY id DESC");
                                 </div>
                             </div>
 
-                            <!-- Get Data Kategori Buku dan Buku -->
-                            <div class="row mb-3">
+                            <div class="row mt-5 mb-5">
                                 <div class="col-sm-2">
-                                    <label for="">Kategori Buku</label>
+                                    <label for="">Kode Peminjaman</label>
                                 </div>
                                 <div class="col-sm-3">
-                                    <select name="id_kategori" id="id_kategori" class="form-control id_kategori">
-                                        <option value="">Pilih Kategori</option>
-                                        <?php while ($rowKategori = mysqli_fetch_assoc($queryKategori)) : ?>
-                                            <option value="<?php echo $rowKategori['id'] ?>"><?php echo $rowKategori['nama_kategori'] ?></option>
+                                    <select name="id_peminjaman" id="" class="form-control">
+                                        <option value="">Pilih Kode Peminjaman</option>
+                                        <?php while ($rowPeminjaman = mysqli_fetch_assoc($queryPeminjaman)): ?>
+                                            <option value="<?php echo $rowPeminjaman['id'] ?>"><?php echo $rowPeminjaman['kode_transaksi'] ?></option>
                                         <?php endwhile ?>
                                     </select>
                                 </div>
                             </div>
-                            <div class="row mb-3">
-                                <div class="col-sm-2">
-                                    <label for="">Nama Buku</label>
-                                </div>
-                                <div class="col-sm-3">
-                                    <select id="id_buku" class="form-control">
-                                        <option value="">Pilih Buku</option>
 
-                                    </select>
-                                </div>
-                            </div>
-                            <input type="hidden" id="tahun_terbit">
+                            <!-- Get Data Kategori Buku dan Buku -->
                             <div class="mt-5 mb-5">
-                                <div align="right" class="mb-3">
-                                    <button type="button" id="tambah-row" class="btn btn-primary tambah-row">
-                                        Tambah
-                                    </button>
-                                </div>
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>

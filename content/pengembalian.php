@@ -8,14 +8,14 @@ WHERE deleted_at = 0
 
 ?>
 <div class="container mt-5">
-    
+
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
-                <div class="card-header">Transaksi Peminjaman</div>
+                <div class="card-header">Transaksi Pengembalian</div>
                 <div class="card-body">
                     <div align="right" class="mb-3">
-                        <a href="?pg=tambah-peminjaman" class="btn btn-primary">Tambah</a>
+                        <a href="?pg=tambah-pengembalian" class="btn btn-primary">Tambah</a>
                     </div>
                     <?php if (isset($_GET['tambah'])) : ?>
                         <div class="alert alert-success">

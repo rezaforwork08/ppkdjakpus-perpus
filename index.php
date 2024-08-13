@@ -1,6 +1,8 @@
 <?php
 session_start();
+ob_start();
 include 'config/koneksi.php';
+include 'function/helper.php';
 
 // echo "<h1>Selamat Datang " . (isset($_SESSION['NAMA_LENGKAP']) ? $_SESSION['NAMA_LENGKAP'] : '') . "</h1>";
 ?>
@@ -38,7 +40,7 @@ include 'config/koneksi.php';
                             <a class="nav-link" href="?pg=peminjaman">Peminjaman</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="?pg=anggota">Pengembalian</a>
+                            <a class="nav-link" href="?pg=pengembalian">Pengembalian</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -56,7 +58,7 @@ include 'config/koneksi.php';
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link" aria-disabled="true">Keluar</a>
+                            <a href="keluar.php" class="nav-link" aria-disabled="true">Keluar</a>
                         </li>
                     </ul>
 

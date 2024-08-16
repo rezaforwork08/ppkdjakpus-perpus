@@ -86,6 +86,7 @@ include 'function/helper.php';
     <script src="assets/js/jquery-3.7.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/moment.js"></script>
 
     <script>
         // let kategori = document.getElementById('id_kategori');
@@ -156,9 +157,59 @@ include 'function/helper.php';
                     $('#tgl_pinjam').val(data.data.tgl_pinjam)
                     $('#tgl_kembali').val(data.data.tgl_kembali)
 
+                    let tanggal_kembali = new moment(data.data.tgl_kembali);
+                    let tanggal_pengembalian = new moment('2024-08-16');
+                    let selisih = tanggal_pengembalian.diff(tanggal_kembali, 'days');
+                    
+                    if (selisih < 0) {
+                        selisih = 0;
+                    }
+                    let denda = 1000000;
+                    let totalDenda = selisih * denda;
+                    $('.total-denda').html("<h5>Rp. " + totalDenda.toLocaleString('id-ID') + "</h5>");
+                    $('#denda').val(totalDenda);
+                    $('#terlambat').val(selisih)
+
+                    let tbody = $('tbody'),
+                        newRow = "";
+                    let no = tbody.find('tr').length + 1;
+                    $.each(data.detail_pinjam, function(index, val) {
+
+                        // console.log("nilai sesudah di looping", val)
+                        newRow += "<tr>";
+                        newRow += "<td>" + no++ + "</td>"
+                        newRow += "<td>" + val.nama_kategori + "</td>"
+                        newRow += "<td>" + val.judul + "</td>"
+                        newRow += "<td>" + val.tahun_terbit + "</td>"
+                        newRow += "</tr>";
+                    });
+                    tbody.html(newRow);
+
+
+
+
+
                 }
             })
         });
+
+        // let tanggalSekarang = new Date();
+        // let formatIndonesia = new Intl.DateTimeFormat('id-ID', {
+        //     year: 'numeric',
+        //     month: '2-digit',
+        //     day: '2-digit'
+        // }).format(tanggalSekarang);
+
+        // let tgl_kembali = $('.tgl_kembali').val();
+        // console.log("tanggal_kembali", tgl_kembali)
+
+        // let tgl_pengembalian = $('#tgl_pengembalian').val();
+
+        // let tanggal_kembali = new moment(tgl_kembali);
+        // let tanggal_pengembalian = new moment('2024-08-16');
+
+        // let selisih = tanggal_pengembalian.diff(tanggal_kembali, 'days');
+        // console.log("selisih", selisih);
     </script>
 
 </body>

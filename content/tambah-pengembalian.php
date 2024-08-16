@@ -225,7 +225,7 @@ $queryPeminjaman  = mysqli_query($koneksi, "SELECT * FROM peminjaman WHERE statu
                                             <label for="">Tanggal Pinjam</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input placeholder="Tanggal Pinjam" type="text" readonly id="tgl_pinjam" value="" class="form-control">
+                                            <input placeholder="Tanggal Pinjam" type="text" readonly id="tgl_pinjam" class="form-control ">
 
                                         </div>
                                     </div>
@@ -234,8 +234,17 @@ $queryPeminjaman  = mysqli_query($koneksi, "SELECT * FROM peminjaman WHERE statu
                                             <label for="">Tanggal Kembali</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input placeholder="Tanggal Kembali" type="text" readonly id="tgl_kembali" value="" class="form-control">
+                                            <input placeholder="Tanggal Kembali" type="text" readonly id="tgl_kembali" class="form-control tgl_kembali">
 
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <label for="">Terlambat</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input placeholder="Terlambat" type="text" readonly id="terlambat" value="" class="form-control">
+                                            <input type="text" name="denda" id="denda">
                                         </div>
                                     </div>
                                 </div>
@@ -250,20 +259,16 @@ $queryPeminjaman  = mysqli_query($koneksi, "SELECT * FROM peminjaman WHERE statu
                                             <th>Kategori Buku</th>
                                             <th>Judul Buku</th>
                                             <th>Tahun Terbit</th>
-                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <!-- <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr> -->
+
 
                                     </tbody>
                                 </table>
+                                <div align="right" class="total-denda">
+
+                                </div>
                             </div>
                             <div class="mb-3">
                                 <input type="submit" class="btn btn-primary" name="simpan" value="Simpan">

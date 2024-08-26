@@ -40,7 +40,7 @@ if (isset($_POST['login'])) {
         <div class="row justify-content-center">
             <div class="col-sm-8">
                 <div class="card">
-                    <div class="card-header">Login Form</div>
+                    <div class="card-header">Login Admin</div>
                     <div class="card-body">
                         <form action="" method="post">
                             <div class="mb-3">

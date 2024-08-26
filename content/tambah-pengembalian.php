@@ -244,7 +244,7 @@ $queryPeminjaman  = mysqli_query($koneksi, "SELECT * FROM peminjaman WHERE statu
                                         </div>
                                         <div class="col-sm-9">
                                             <input placeholder="Terlambat" type="text" readonly id="terlambat" value="" class="form-control">
-                                            <input type="text" name="denda" id="denda">
+                                            <input type="hidden" name="denda" id="denda">
                                         </div>
                                     </div>
                                 </div>

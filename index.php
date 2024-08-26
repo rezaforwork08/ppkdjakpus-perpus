@@ -160,7 +160,6 @@ include 'function/helper.php';
                     let tanggal_kembali = new moment(data.data.tgl_kembali);
                     let tanggal_pengembalian = new moment('2024-08-16');
                     let selisih = tanggal_pengembalian.diff(tanggal_kembali, 'days');
-                    
                     if (selisih < 0) {
                         selisih = 0;
                     }
@@ -168,7 +167,7 @@ include 'function/helper.php';
                     let totalDenda = selisih * denda;
                     $('.total-denda').html("<h5>Rp. " + totalDenda.toLocaleString('id-ID') + "</h5>");
                     $('#denda').val(totalDenda);
-                    $('#terlambat').val(selisih)
+                    $('#terlambat').val(selisih);
 
                     let tbody = $('tbody'),
                         newRow = "";
